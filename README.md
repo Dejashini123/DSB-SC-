@@ -48,8 +48,52 @@ Model Waveform
 <img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/e7c7c7f8-ccf2-41ac-b1f3-325989941a6f" />
 
 Program
+```clc;
+clear;
+close;
+
+// Parameters (from your sir’s formula, table value = 14)
+Am = 14;       // Message amplitude
+Ac = 28;       // Carrier amplitude (Am*2)
+Fm = 10;       // Message frequency
+Fc = 100;      // Carrier frequency (Fm*10)
+Fs = 1000;     // Sampling frequency (Fc*10)
+t  = 0:1/Fs:2/Fm;  // Time base (two message cycles)
+
+// Message signal
+m = Am * cos(2*%pi*Fm*t);
+subplot(4,1,1);
+plot(t, m);
+xtitle("Message Signal");
+
+// Carrier signal
+c = Ac * cos(2*%pi*Fc*t);
+subplot(4,1,2);
+plot(t, c);
+xtitle("Carrier Signal");
+
+// DSB-SC Modulated signal
+dsb = m .* c;
+subplot(4,1,3);
+plot(t, dsb);
+xtitle("DSB-SC Modulated Signal");
+
+// Demodulation (Coherent detection)
+demod = dsb .* c;   // Multiply with carrier again
+
+// Simple Low-pass filter (moving average)
+N = 50;
+h = ones(1,N)/N;
+rec = conv(demod, h, "same");
+
+subplot(4,1,4);
+plot(t, rec);
+xtitle("Demodulated Message Signal");
+xgrid();
+```
 
 Output Graph
+<img width="959" height="539" alt="image" src="https://github.com/user-attachments/assets/d639a426-38c7-4bca-98ea-c6922a76bb7e" />
 
 
 Tablular Column
