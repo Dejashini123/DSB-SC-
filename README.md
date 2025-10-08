@@ -48,52 +48,43 @@ Model Waveform
 <img width="703" height="679" alt="image" src="https://github.com/user-attachments/assets/e7c7c7f8-ccf2-41ac-b1f3-325989941a6f" />
 
 Program
-```clc;
+```
+clc;
 clear;
 close;
-
-// Parameters (from your sir’s formula, table value = 14)
-Am = 14;       // Message amplitude
-Ac = 28;       // Carrier amplitude (Am*2)
-Fm = 10;       // Message frequency
-Fc = 100;      // Carrier frequency (Fm*10)
-Fs = 1000;     // Sampling frequency (Fc*10)
-t  = 0:1/Fs:2/Fm;  // Time base (two message cycles)
-
-// Message signal
-m = Am * cos(2*%pi*Fm*t);
-subplot(4,1,1);
-plot(t, m);
-xtitle("Message Signal");
-
-// Carrier signal
-c = Ac * cos(2*%pi*Fc*t);
-subplot(4,1,2);
-plot(t, c);
-xtitle("Carrier Signal");
-
-// DSB-SC Modulated signal
-dsb = m .* c;
-subplot(4,1,3);
-plot(t, dsb);
-xtitle("DSB-SC Modulated Signal");
-
-// Demodulation (Coherent detection)
-demod = dsb .* c;   // Multiply with carrier again
-
-// Simple Low-pass filter (moving average)
-N = 50;
-h = ones(1,N)/N;
-rec = conv(demod, h, "same");
-
-subplot(4,1,4);
-plot(t, rec);
-xtitle("Demodulated Message Signal");
+Ac=16.8;
+Am=8.4;
+Fc=4100;
+Fm=410;
+Fs=50000;
+t=0:1/Fs:2/Fm;
+wm=2*3.14*Fm;
+wc=2*3.14*Fc;
+E1=Am*sin(2*3.14*Fm*t);
+subplot(3,1,1);
+plot(t,E1);
+xlabel("Time(s)");
+ylabel("Amplitude");
+title("Message Signal m(t)");
+E2=Ac*sin(2*3.14*Fc*t);
+subplot(3,1,2);
+plot(t,E2);
+xlabel("Time(s)");
+ylabel("Amplitude");
+title("Carrier Signal c(t)");
+E3=((Am/2)*cos((wc-wm)*t))-((Am/2)*cos((wc+wm)*t));
+subplot(3,1,3)
+plot(t,E3);
+xlabel("Time(s)");
+ylabel("Amplitude");
+title("DSB-SC Modulated Signal s(t)");
 xgrid();
+
+
 ```
 
 Output Graph
-<img width="959" height="539" alt="image" src="https://github.com/user-attachments/assets/d639a426-38c7-4bca-98ea-c6922a76bb7e" />
+<img width="1918" height="1146" alt="image" src="https://github.com/user-attachments/assets/65c40060-c8d2-4683-b6c0-70db7a8668de" />
 
 
 Tablular Column
