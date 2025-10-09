@@ -88,6 +88,12 @@ Output Graph
 
 
 Tablular Column
+![WhatsApp Image 2025-10-09 at 16 03 31_f6c9f316](https://github.com/user-attachments/assets/a34667bc-4d45-4eec-bd50-280091cabe62)
+Calculation:
+
+![WhatsApp Image 2025-10-09 at 16 03 53_7257f042](https://github.com/user-attachments/assets/741b28bd-6181-4a7c-9dcf-d1297f6473bc)
+
+
 
 
 Result
