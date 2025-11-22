@@ -111,4 +111,6 @@ Calculation:
 Result
 
 Thus the DSB-SC-AM Modulation and Demodulation is generated.
+![WhatsApp Image 2025-11-22 at 10 47 10 PM](https://github.com/user-attachments/assets/75e1af6d-8f29-43ef-8579-02828e06dd0d)
+
 
